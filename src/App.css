@@ -1,9 +1,15 @@
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  
+  color: white;
+  
   text-align: center;
 }
+#body{
+  background-image: url("../src/assets/bannerBg-2.png");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 .logo {
   height: 6em;
