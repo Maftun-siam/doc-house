@@ -3,7 +3,7 @@ import InfoCard from '../../../Components/InfoCard/InfoCard';
 
 const Info = () => {
     return (
-        <div className='bg-white '>
+        <div className='bg-white pt-24 pb-24 '>
             <InfoCard></InfoCard>
         </div>
     );

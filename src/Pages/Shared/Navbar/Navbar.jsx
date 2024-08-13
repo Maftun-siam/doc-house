@@ -10,6 +10,7 @@ const Navbar = () => {
             <div className='justify-center items-center'>
                 <ul className='flex flex-row gap-6 justify-center items-center'>
                     <NavLink> <li>Home</li></NavLink>
+                    <NavLink to='/doc'> <li>Doc</li></NavLink>
                     <NavLink> <li>About</li></NavLink>
                     <NavLink> <li>Appoinment</li></NavLink>
                     <NavLink> <li>Login</li></NavLink>

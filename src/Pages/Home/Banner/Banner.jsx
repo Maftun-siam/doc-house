@@ -4,7 +4,7 @@ import bgOne from '../../../assets/bannerBg-2.png'
 const Banner = () => {
     return (
 
-        <div style={{backgroundImage:`url(${bgOne})`,backgroundRepeat:'no-repeat',backgroundPosition:'-5px 5px ',}} className='max-w-screen-2xl'>
+        <div style={{backgroundImage:`url(${bgOne})`,backgroundRepeat:'no-repeat',backgroundPosition:'-5px 5px ',}} className='max-w-screen-2xl bg-[#07332F]'>
             <div  className='flex justify-center items-center -mt-24 z-10 pt-[150px] bg-'>
                 <div className='max-h-[800px] items-start flex flex-col'>
                     <h1 className='text-[65px] text-left leading-[75px] font-semibold text-white'>Your Best Medical <br></br>Help Center</h1>
