@@ -8,7 +8,13 @@ export default {
     fontFamily:{
      
     },
-    extend: {},
+    extend: {
+      // Adding custom container class
+      maxWidth: {
+        'content-box': '1127px', // Custom class for max-width
+      },
+    },
+
   },
   plugins: [require('daisyui'),],
 }

@@ -1,0 +1,252 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. Sarah Lee",
+        "education": [
+            {
+                "institution": "Harvard School of Dental Medicine",
+                "degree": "DMD",
+                "years": "2001 - 2005"
+            },
+            {
+                "institution": "Columbia University College of Dental Medicine",
+                "degree": "Orthodontics Residency",
+                "years": "2006 - 2009"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Bright Smiles Dental Clinic",
+                "years": "2010 - Present",
+                "duration": "14 years"
+            },
+            {
+                "clinic": "Happy Teeth Dental Care",
+                "years": "2009 - 2010",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "June 2018",
+                "title": "Outstanding Orthodontist Award",
+                "description": "Recognized for exceptional service in orthodontics."
+            },
+            {
+                "year": "September 2015",
+                "title": "Excellence in Patient Care",
+                "description": "Awarded for outstanding patient care and satisfaction."
+            }
+        ],
+        "specializations": [
+            "Orthodontics",
+            "Invisalign",
+            "Pediatric Dentistry"
+        ],
+        "services": [
+            "Braces",
+            "Invisalign",
+            "Teeth Whitening"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Dr. Michael Brown",
+        "education": [
+            {
+                "institution": "University of California, Los Angeles School of Dentistry",
+                "degree": "DDS",
+                "years": "1995 - 1999"
+            },
+            {
+                "institution": "New York University College of Dentistry",
+                "degree": "Periodontics Residency",
+                "years": "2000 - 2002"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Healthy Gums Dental Clinic",
+                "years": "2003 - Present",
+                "duration": "21 years"
+            },
+            {
+                "clinic": "NYU Dental Center",
+                "years": "2002 - 2003",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "August 2020",
+                "title": "Best Periodontist Award",
+                "description": "Awarded for excellence in periodontics and gum care."
+            },
+            {
+                "year": "April 2017",
+                "title": "Top Dentist Award",
+                "description": "Recognized for overall excellence in dental care."
+            }
+        ],
+        "specializations": [
+            "Periodontics",
+            "Gum Surgery",
+            "Dental Implants"
+        ],
+        "services": [
+            "Gum Disease Treatment",
+            "Implant Placement",
+            "Bone Grafting"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Dr. Emily Clark",
+        "education": [
+            {
+                "institution": "University of Michigan School of Dentistry",
+                "degree": "DDS",
+                "years": "2003 - 2007"
+            },
+            {
+                "institution": "Boston University Henry M. Goldman School of Dental Medicine",
+                "degree": "Endodontics Residency",
+                "years": "2008 - 2010"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Root Canal Experts Clinic",
+                "years": "2011 - Present",
+                "duration": "13 years"
+            },
+            {
+                "clinic": "SmileCare Dental",
+                "years": "2010 - 2011",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "October 2019",
+                "title": "Best Endodontist Award",
+                "description": "Awarded for outstanding work in endodontics."
+            },
+            {
+                "year": "May 2016",
+                "title": "Dental Excellence Award",
+                "description": "Recognized for excellence in dental care and patient satisfaction."
+            }
+        ],
+        "specializations": [
+            "Endodontics",
+            "Root Canal Therapy",
+            "Dental Trauma"
+        ],
+        "services": [
+            "Root Canal Treatment",
+            "Endodontic Surgery",
+            "Tooth Preservation"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Dr. William Johnson",
+        "education": [
+            {
+                "institution": "University of Pennsylvania School of Dental Medicine",
+                "degree": "DMD",
+                "years": "2005 - 2009"
+            },
+            {
+                "institution": "University of Washington School of Dentistry",
+                "degree": "Prosthodontics Residency",
+                "years": "2010 - 2013"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Precision Dental Arts",
+                "years": "2014 - Present",
+                "duration": "10 years"
+            },
+            {
+                "clinic": "SmileDesign Dental Studio",
+                "years": "2013 - 2014",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "February 2021",
+                "title": "Top Prosthodontist Award",
+                "description": "Recognized for excellence in prosthodontics."
+            },
+            {
+                "year": "November 2018",
+                "title": "Innovative Dental Care Award",
+                "description": "Awarded for innovative approaches in dental care."
+            }
+        ],
+        "specializations": [
+            "Prosthodontics",
+            "Dental Implants",
+            "Cosmetic Dentistry"
+        ],
+        "services": [
+            "Crowns & Bridges",
+            "Dentures",
+            "Veneers"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Dr. Laura White",
+        "education": [
+            {
+                "institution": "University of North Carolina at Chapel Hill School of Dentistry",
+                "degree": "DDS",
+                "years": "1999 - 2003"
+            },
+            {
+                "institution": "University of Southern California School of Dentistry",
+                "degree": "Pediatric Dentistry Residency",
+                "years": "2004 - 2006"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Kids First Dental Care",
+                "years": "2007 - Present",
+                "duration": "17 years"
+            },
+            {
+                "clinic": "ChildSmile Pediatric Dentistry",
+                "years": "2006 - 2007",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "December 2020",
+                "title": "Best Pediatric Dentist Award",
+                "description": "Recognized for outstanding work in pediatric dentistry."
+            },
+            {
+                "year": "July 2017",
+                "title": "Excellence in Children's Dentistry",
+                "description": "Awarded for exceptional care in pediatric dentistry."
+            }
+        ],
+        "specializations": [
+            "Pediatric Dentistry",
+            "Preventive Care",
+            "Dental Education"
+        ],
+        "services": [
+            "Fluoride Treatments",
+            "Dental Sealants",
+            "Cavity Prevention"
+        ]
+    }
+]
