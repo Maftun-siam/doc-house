@@ -1,0 +1,1 @@
+/* Home page/ expertdpctor section five star as dynamic  */
