@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 
 import doc1 from '../../assets/doc1.png';
 
 import bg from '../../assets/doctorProfilebg.png'
 
+=======
+import React from 'react';
+import doc1 from '../../assets/doc1.png';
+
+import { Outlet } from 'react-router-dom';
+import bg from '../../assets/doctorProfilebg.png'
+import DoctorsCard from '../../Components/DoctorsCard/DoctorsCard';
+>>>>>>> 44823c0db63df20e81e220ad7c7f16673bea9616
 import DocCard from './DocCard/DocCard';
 import Tabs from './Tabs/Tabs';
 const DoctorsProfile = () => {
@@ -20,7 +29,11 @@ const DoctorsProfile = () => {
 
 
                 <div className=' text-left  text-[36px] m-0 p-0 font-semibold' style={{ maxWidth: '1127px' }}>
+<<<<<<< HEAD
                     <h2>Doctor' Profile</h2>
+=======
+                    <h2>Doctor's Profile</h2>
+>>>>>>> 44823c0db63df20e81e220ad7c7f16673bea9616
                 </div>
 
 
