@@ -1,0 +1,32 @@
+[
+    {
+        "_id": "1",
+        "name": "Soman Anderson",
+        "post": "BTP -  Senior Physiotherapist",
+        "image": "https://i.ibb.co/QnWYdhy/doc3.png",
+        "location": "Dhanmondi, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 22 December",
+        "rating": 5,
+        "price": 15
+    },
+    {
+        "_id": "2",
+        "name": "Karyen Anderson",
+        "post": "RTS -  Main Physiotherapist",
+        "image": "https://i.ibb.co/mS4T6dJ/doc1.png",
+        "location": "Ramgonj, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 23 December",
+        "rating": 4,
+        "price": 50
+    },
+    {
+        "_id": "3",
+        "name": "Jummen Anderson",
+        "post": "GTR -  Middler Physiotherapist",
+        "image": "https://i.ibb.co/ftHvH2b/doc2.png",
+        "location": "Gulshan, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 29 December",
+        "rating": 2,
+        "price": 45
+    }
+]
