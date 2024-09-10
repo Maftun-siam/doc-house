@@ -12,7 +12,7 @@ function App() {
     <div><h2 className='text-3xl'>Welcome to doc house</h2></div>
 
 
-    <h2>gjggggggggggggggggggggggggggggg</h2>
+    <h2>gjggggggggggggggggggggfffffffffffffffffffffffffffffffffffffffffffggggggggg</h2>
 
     <div><h2 className='text-3xl'>Welcome to doc house</h2></div>
 
