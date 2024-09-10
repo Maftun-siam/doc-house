@@ -11,13 +11,8 @@ const Tabs = () => {
     };
 
     const getSlideClass = () => {
-<<<<<<< HEAD
         return slideDirection === "right"
             ? "animate-slideInFromRight"
-=======
-        return slideDirection === "right" 
-            ? "animate-slideInFromRight" 
->>>>>>> 44823c0db63df20e81e220ad7c7f16673bea9616
             : "animate-slideInFromLeft";
     };
 
@@ -61,7 +56,6 @@ const Tabs = () => {
                     Business Hours
                 </button>
             </div>
-<<<<<<< HEAD
             {/* Tabs  */}
             <div className={` relative ${getSlideClass()}`}>
                 <div className={`${activeTab === "Overview" ? "block" : "hidden"}`}>
@@ -165,12 +159,6 @@ const Tabs = () => {
                             </div>
                         </div>
                     </div>
-=======
-
-            <div className={`p-4 relative ${getSlideClass()}`}>
-                <div className={`${activeTab === "Overview" ? "block" : "hidden"}`}>
-                    Overview Content
->>>>>>> 44823c0db63df20e81e220ad7c7f16673bea9616
                 </div>
                 <div className={`${activeTab === "Locations" ? "block" : "hidden"}`}>
                     Locations Content
