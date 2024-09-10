@@ -11,6 +11,8 @@ import { Outlet } from 'react-router-dom';
 import DoctorsCard from '../../Components/DoctorsCard/DoctorsCard';
 import DocCard from './DocCard/DocCard';
 import Tabs from './Tabs/Tabs';
+import Slider from './DocCard/DocCard';
+
 const DoctorsProfile = () => {
     return (
 
@@ -27,22 +29,14 @@ const DoctorsProfile = () => {
 
                 <div className=' text-left  text-[36px] m-0 p-0 font-semibold' style={{ maxWidth: '1127px' }}>
                     <h2>Doctor' Profile</h2>
-                    <h2>Doctor's Profile</h2>
+
                 </div>
 
-
+                <Slider></Slider>
 
             </div>
             <div className='bg-[#F3F3F3] p-24'>
-                <DocCard
-                    name={"siam"}
-                    post={"MBBS, MD - General Medicine"}
-                    rating={"5"}
-                    location={"Dhanmondi, Dhaka, Bangladesh - Get Directions"}
-                    btn1={"Dental Filling"}
-                    btn2={"Teeth Whitneing"}
-                    image={doc1}
-                ></DocCard>
+
 
                 <div className='bg-white ml-4 mt-24 max-w-content-box'>
                     <Tabs></Tabs>
