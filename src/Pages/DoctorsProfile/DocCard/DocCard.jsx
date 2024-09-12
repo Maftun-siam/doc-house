@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const doctors = [
   {
@@ -10,7 +10,6 @@ const doctors = [
     specialties: ['Dental Filling', 'Teeth Whitening'],
     image: 'https://via.placeholder.com/150', // replace with actual image URL
   },
-  // Add more doctors here
   {
     name: 'Dr. John Doe',
     qualification: 'MBBS, MD - Dermatology',
@@ -20,11 +19,12 @@ const doctors = [
     specialties: ['Skin Care', 'Laser Treatment'],
     image: 'https://via.placeholder.com/150',
   },
+  // Add more doctors here if needed
 ];
 
 const DoctorCard = ({ doctor }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-4 w-full sm:w-96 mx-2">
+    <div className="bg-white shadow-lg rounded-lg p-4 w-full sm:w-96 mx-auto">
       <div className="flex items-start">
         <img
           className="w-24 h-24 rounded-lg bg-gray-200"
@@ -60,11 +60,39 @@ const DoctorCard = ({ doctor }) => {
 };
 
 const Slider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? doctors.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === doctors.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
-    <div className="flex overflow-x-auto py-4">
-      {doctors.map((doctor, index) => (
-        <DoctorCard key={index} doctor={doctor} />
-      ))}
+    <div className="relative w-full flex items-center justify-center">
+      <button
+        onClick={handlePrev}
+        className="absolute left-0 bg-gray-300 rounded-full p-2 focus:outline-none"
+      >
+        &#8592;
+      </button>
+
+      <div className="w-full max-w-md">
+        <DoctorCard doctor={doctors[currentIndex]} />
+      </div>
+
+      <button
+        onClick={handleNext}
+        className="absolute right-0 bg-gray-300 rounded-full p-2 focus:outline-none"
+      >
+        &#8594;
+      </button>
     </div>
   );
 };

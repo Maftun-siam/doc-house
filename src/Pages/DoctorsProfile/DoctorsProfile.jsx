@@ -32,11 +32,11 @@ const DoctorsProfile = () => {
 
                 </div>
 
-                <Slider></Slider>
+
 
             </div>
             <div className='bg-[#F3F3F3] p-24'>
-
+                <Slider></Slider>
 
                 <div className='bg-white ml-4 mt-24 max-w-content-box'>
                     <Tabs></Tabs>
