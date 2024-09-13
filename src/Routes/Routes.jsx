@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home/Home"
 import DoctorsProfile from "../Pages/DoctorsProfile/DoctorsProfile";
 import SignUp from "../Pages/DoctorsProfile/Signup/SignUp";
 import Login from "../Pages/DoctorsProfile/login/Login";
+import PrivateRoute from "./PrivateRoute";
+import Secret from "../Pages/Shared/Secret/Secret";
 
 
 
@@ -28,8 +30,13 @@ export const router = createBrowserRouter([
                 path: '/login',
                 element: <Login></Login>
             },
+            {
+                path: '/secret',
+                element: <PrivateRoute><Secret></Secret></PrivateRoute>
+            },
         ]
     },
 ]);
 
 
+66-8
