@@ -789,22 +789,642 @@ const OurServices = () => {
                 </div>
             </div>
         </div>
-    );
+    );  
 };
 
 export default OurServices;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
+src\Pages\DoctorsProfile\DocCard\DocCard.jsx
+import React, { useState } from 'react';
+
+const doctors = [
+  {
+    name: 'Dr. Ruby Perrin',
+    qualification: 'MBBS, MD - General Medicine',
+    rating: 4.5,
+    reviews: 35,
+    location: 'Dhanmondi, Dhaka, Bangladesh',
+    specialties: ['Dental Filling', 'Teeth Whitening'],
+    image: 'https://via.placeholder.com/150', // replace with actual image URL
+  },
+  {
+    name: 'Dr. John Doe',
+    qualification: 'MBBS, MD - Dermatology',
+    rating: 4.0,
+    reviews: 20,
+    location: 'Banani, Dhaka, Bangladesh',
+    specialties: ['Skin Care', 'Laser Treatment'],
+    image: 'https://via.placeholder.com/150',
+  },
+  // Add more doctors here if needed
+];
+
+const DoctorCard = ({ doctor }) => {
+  return (
+    <div className="bg-white shadow-lg rounded-lg p-4 w-full sm:w-96 mx-auto">
+      <div className="flex items-start">
+        <img
+          className="w-24 h-24 rounded-lg bg-gray-200"
+          src={doctor.image}
+          alt={doctor.name}
+        />
+        <div className="ml-4">
+          <h2 className="font-bold text-xl">{doctor.name}</h2>
+          <p className="text-gray-500">{doctor.qualification}</p>
+          <div className="flex items-center my-2">
+            <span className="text-yellow-400">&#9733;</span>
+            <span className="ml-1">{doctor.rating}</span>
+            <span className="text-gray-400 ml-2">({doctor.reviews})</span>
+          </div>
+          <p className="text-gray-500 text-sm">
+            <span className="inline-block mr-1">&#128205;</span>
+            {doctor.location} - <a href="#" className="text-orange-500">Get Directions</a>
+          </p>
+          <div className="flex mt-4 space-x-2">
+            {doctor.specialties.map((specialty, index) => (
+              <button
+                key={index}
+                className="text-sm px-2 py-1 border rounded-md text-gray-700"
+              >
+                {specialty}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Slider = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? doctors.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === doctors.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  return (
+    <div className="relative w-full flex items-center justify-center">
+      <button
+        onClick={handlePrev}
+        className="absolute left-0 bg-gray-300 rounded-full p-2 focus:outline-none"
+      >
+        &#8592;
+      </button>
+
+      <div className="w-full max-w-md">
+        <DoctorCard doctor={doctors[currentIndex]} />
+      </div>
+
+      <button
+        onClick={handleNext}
+        className="absolute right-0 bg-gray-300 rounded-full p-2 focus:outline-none"
+      >
+        &#8594;
+      </button>
+    </div>
+  );
+};
+
+export default Slider;
 
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
+src\Pages\DoctorsProfile\Tabs\Tabs.jsx
+
+import React, { useState } from "react";
+
+const Tabs = () => {
+    const [activeTab, setActiveTab] = useState("Overview");
+    const [slideDirection, setSlideDirection] = useState("right");
+
+    const handleTabClick = (tab) => {
+        // Determine slide direction
+        setSlideDirection(activeTab < tab ? "right" : "left");
+        setActiveTab(tab);
+    };
+
+    const getSlideClass = () => {
+        return slideDirection === "right"
+            ? "animate-slideInFromRight"
+            : "animate-slideInFromLeft";
+    };
+
+    return (
+        <div className="bg-white rounded-md shadow-md p-4">
+            <div className="flex border-b">
+                <button
+                    className={`py-2 px-4 ${activeTab === 'Overview'
+                        ? 'bg-orange-300 text-white rounded-t-md' // Active tab styling
+                        : 'bg-white text-gray-600' // Inactive tab styling
+                        }`}
+                    onClick={() => handleTabClick("Overview")}
+                >
+                    Overview
+                </button>
+                <button
+                    className={`py-2 px-4 ${activeTab === 'Locations'
+                        ? 'bg-orange-300 text-white rounded-t-md' // Active tab styling
+                        : 'bg-white text-gray-600' // Inactive tab styling
+                        }`}
+                    onClick={() => handleTabClick("Locations")}
+                >
+                    Locations
+                </button>
+                <button
+                    className={`py-2 px-4 ${activeTab === 'Reviews'
+                        ? 'bg-orange-300 text-white rounded-t-md' // Active tab styling
+                        : 'bg-white text-gray-600' // Inactive tab styling
+                        }`}
+                    onClick={() => handleTabClick("Reviews")}
+                >
+                    Reviews
+                </button>
+                <button
+                    className={`py-2 px-4 ${activeTab === 'Business Hours'
+                        ? 'bg-orange-300 text-white rounded-t-md' // Active tab styling
+                        : 'bg-white text-gray-600' // Inactive tab styling
+                        }`}
+                    onClick={() => handleTabClick("Business Hours")}
+                >
+                    Business Hours
+                </button>
+            </div>
+            {/* Tabs  */}
+            <div className={` relative ${getSlideClass()}`}>
+                <div className={`${activeTab === "Overview" ? "block" : "hidden"}`}>
+
+                    {/* overview stsrt */}
+                    <div className="  min-h-screen">
+                        <div className=" mx-auto bg-white p-6 ">
+                            {/* About Me Section */}
+                            <section className="mb-8">
+                                <h2 className="text-2xl text-black font-semibold mb-2 text-left">About Me</h2>
+                                <p className="text-gray-700 text-left">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                </p>
+                            </section>
+
+                            {/* Education and Awards Section */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                {/* Education */}
+                                <section className="text-left">
+                                    <h3 className="text-xl text-black font-semibold mb-2">Education</h3>
+                                    <ul className="list-disc list-inside text-gray-700 space-y-2">
+                                        <li>
+                                            <strong>American Dental Medical University</strong> <br />
+                                            BDS <br />
+                                            1998 - 2003
+                                        </li>
+                                        <li>
+                                            <strong>American Dental Medical University</strong> <br />
+                                            MDS <br />
+                                            2003 - 2005
+                                        </li>
+                                    </ul>
+                                </section>
+
+                                {/* Awards */}
+                                <section className="text-left">
+                                    <h3 className="text-xl font-semibold text-black mb-2">Awards</h3>
+                                    <ul className="list-disc list-inside text-gray-700 space-y-2">
+                                        <li>
+                                            <strong>July 2019 - Humanitarian Award</strong> <br />
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                        </li>
+                                        <li>
+                                            <strong>March 2011 - Certificate for International Volunteer Service</strong> <br />
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                        </li>
+                                        <li>
+                                            <strong>May 2008 - The Dental Professional of The Year Award</strong> <br />
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus.
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+
+                            {/* Work & Experience, Services, Specializations Section */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                                {/* Work & Experience */}
+                                <section className="text-left">
+                                    <h3 className="text-xl text-black font-semibold mb-2">Work & Experience</h3>
+                                    <ul className="list-disc list-inside text-gray-700 space-y-2">
+                                        <li>
+                                            <strong>Glowing Smiles Family Dental Clinic</strong> <br />
+                                            2010 - Present (5 years)
+                                        </li>
+                                        <li>
+                                            <strong>Comfort Care Dental Clinic</strong> <br />
+                                            2007 - 2010 (3 years)
+                                        </li>
+                                        <li>
+                                            <strong>Dream Smile Dental Practice</strong> <br />
+                                            2005 - 2007 (2 years)
+                                        </li>
+                                    </ul>
+                                </section>
+
+                                {/* Services */}
+                                <section className="text-left">
+                                    <h3 className="text-xl font-semibold text-black mb-2">Services</h3>
+                                    <ul className="list-disc list-inside text-gray-700 space-y-2">
+                                        <li>Tooth cleaning</li>
+                                        <li>Root Canal Therapy</li>
+                                        <li>Implants</li>
+                                        <li>Composite Bonding</li>
+                                        <li>Fissure Sealants</li>
+                                        <li>Surgical Extractions</li>
+                                    </ul>
+                                </section>
+
+                                {/* Specializations */}
+                                <section className="text-left">
+                                    <h3 className="text-xltext-black font-semibold mb-2">Specializations</h3>
+                                    <ul className="list-disc list-inside text-gray-700 space-y-2">
+                                        <li>Children Care</li>
+                                        <li>Dental Care</li>
+                                        <li>Oral and Maxillofacial Surgery</li>
+                                        <li>Orthodontist</li>
+                                        <li>Periodontist</li>
+                                        <li>Prosthodontics</li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={`${activeTab === "Locations" ? "block" : "hidden"}`}>
+                    Locations Content
+                </div>
+                <div className={`${activeTab === "Reviews" ? "block" : "hidden"}`}>
+                    Reviews Content
+                </div>
+                <div className={`${activeTab === "Business Hours" ? "block" : "hidden"}`}>
+                    Business Hours Content
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Tabs;
+
 
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
+src\Pages\DoctorsProfile\DoctorsProfile.jsx
 
+import doc1 from '../../assets/doc1.png';
+
+import bg from '../../assets/doctorProfilebg.png'
+
+import React from 'react';
+
+
+import { Outlet } from 'react-router-dom';
+
+import DoctorsCard from '../../Components/DoctorsCard/DoctorsCard';
+import DocCard from './DocCard/DocCard';
+import Tabs from './Tabs/Tabs';
+import Slider from './DocCard/DocCard';
+
+const DoctorsProfile = () => {
+    return (
+
+        <div className=''>
+
+            <div
+                style={{
+                    backgroundImage: `url(${bg})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: '40px 130px ',
+                }}
+                className=' max-w-screen-2xl  py-36 px-28'>
+
+
+                <div className=' text-left  text-[36px] m-0 p-0 font-semibold' style={{ maxWidth: '1127px' }}>
+                    <h2>Doctor' Profile</h2>
+
+                </div>
+
+
+
+            </div>
+            <div className='bg-[#F3F3F3] p-24'>
+                <Slider></Slider>
+
+                <div className='bg-white ml-4 mt-24 max-w-content-box'>
+                    <Tabs></Tabs>
+                </div>
+            </div>
+            {/* <div className='bg-white mx-auto max-w-content-box'><h2>fvh</h2></div> */}
+        </div>
+
+    );
+};
+
+export default DoctorsProfile;
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
+in public folder
+doctor.json
+[
+    {
+        "_id": "1",
+        "name": "Soman Anderson",
+        "post": "BTP -  Senior Physiotherapist",
+        "image": "https://i.ibb.co/QnWYdhy/doc3.png",
+        "location": "Dhanmondi, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 22 December",
+        "rating": 5,
+        "price": 15
+    },
+    {
+        "_id": "2",
+        "name": "Karyen Anderson",
+        "post": "RTS -  Main Physiotherapist",
+        "image": "https://i.ibb.co/mS4T6dJ/doc1.png",
+        "location": "Ramgonj, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 23 December",
+        "rating": 4,
+        "price": 50
+    },
+    {
+        "_id": "3",
+        "name": "Jummen Anderson",
+        "post": "GTR -  Middler Physiotherapist",
+        "image": "https://i.ibb.co/ftHvH2b/doc2.png",
+        "location": "Gulshan, Dhaka, Bangladesh",
+        "availibity": "Available On Mon, 29 December",
+        "rating": 2,
+        "price": 45
+    }
+]
+
+doctorsAboutinfo.json
+[
+    {
+        "id": 1,
+        "name": "Dr. Sarah Lee",
+        "education": [
+            {
+                "institution": "Harvard School of Dental Medicine",
+                "degree": "DMD",
+                "years": "2001 - 2005"
+            },
+            {
+                "institution": "Columbia University College of Dental Medicine",
+                "degree": "Orthodontics Residency",
+                "years": "2006 - 2009"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Bright Smiles Dental Clinic",
+                "years": "2010 - Present",
+                "duration": "14 years"
+            },
+            {
+                "clinic": "Happy Teeth Dental Care",
+                "years": "2009 - 2010",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "June 2018",
+                "title": "Outstanding Orthodontist Award",
+                "description": "Recognized for exceptional service in orthodontics."
+            },
+            {
+                "year": "September 2015",
+                "title": "Excellence in Patient Care",
+                "description": "Awarded for outstanding patient care and satisfaction."
+            }
+        ],
+        "specializations": [
+            "Orthodontics",
+            "Invisalign",
+            "Pediatric Dentistry"
+        ],
+        "services": [
+            "Braces",
+            "Invisalign",
+            "Teeth Whitening"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Dr. Michael Brown",
+        "education": [
+            {
+                "institution": "University of California, Los Angeles School of Dentistry",
+                "degree": "DDS",
+                "years": "1995 - 1999"
+            },
+            {
+                "institution": "New York University College of Dentistry",
+                "degree": "Periodontics Residency",
+                "years": "2000 - 2002"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Healthy Gums Dental Clinic",
+                "years": "2003 - Present",
+                "duration": "21 years"
+            },
+            {
+                "clinic": "NYU Dental Center",
+                "years": "2002 - 2003",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "August 2020",
+                "title": "Best Periodontist Award",
+                "description": "Awarded for excellence in periodontics and gum care."
+            },
+            {
+                "year": "April 2017",
+                "title": "Top Dentist Award",
+                "description": "Recognized for overall excellence in dental care."
+            }
+        ],
+        "specializations": [
+            "Periodontics",
+            "Gum Surgery",
+            "Dental Implants"
+        ],
+        "services": [
+            "Gum Disease Treatment",
+            "Implant Placement",
+            "Bone Grafting"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Dr. Emily Clark",
+        "education": [
+            {
+                "institution": "University of Michigan School of Dentistry",
+                "degree": "DDS",
+                "years": "2003 - 2007"
+            },
+            {
+                "institution": "Boston University Henry M. Goldman School of Dental Medicine",
+                "degree": "Endodontics Residency",
+                "years": "2008 - 2010"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Root Canal Experts Clinic",
+                "years": "2011 - Present",
+                "duration": "13 years"
+            },
+            {
+                "clinic": "SmileCare Dental",
+                "years": "2010 - 2011",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "October 2019",
+                "title": "Best Endodontist Award",
+                "description": "Awarded for outstanding work in endodontics."
+            },
+            {
+                "year": "May 2016",
+                "title": "Dental Excellence Award",
+                "description": "Recognized for excellence in dental care and patient satisfaction."
+            }
+        ],
+        "specializations": [
+            "Endodontics",
+            "Root Canal Therapy",
+            "Dental Trauma"
+        ],
+        "services": [
+            "Root Canal Treatment",
+            "Endodontic Surgery",
+            "Tooth Preservation"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Dr. William Johnson",
+        "education": [
+            {
+                "institution": "University of Pennsylvania School of Dental Medicine",
+                "degree": "DMD",
+                "years": "2005 - 2009"
+            },
+            {
+                "institution": "University of Washington School of Dentistry",
+                "degree": "Prosthodontics Residency",
+                "years": "2010 - 2013"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Precision Dental Arts",
+                "years": "2014 - Present",
+                "duration": "10 years"
+            },
+            {
+                "clinic": "SmileDesign Dental Studio",
+                "years": "2013 - 2014",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "February 2021",
+                "title": "Top Prosthodontist Award",
+                "description": "Recognized for excellence in prosthodontics."
+            },
+            {
+                "year": "November 2018",
+                "title": "Innovative Dental Care Award",
+                "description": "Awarded for innovative approaches in dental care."
+            }
+        ],
+        "specializations": [
+            "Prosthodontics",
+            "Dental Implants",
+            "Cosmetic Dentistry"
+        ],
+        "services": [
+            "Crowns & Bridges",
+            "Dentures",
+            "Veneers"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Dr. Laura White",
+        "education": [
+            {
+                "institution": "University of North Carolina at Chapel Hill School of Dentistry",
+                "degree": "DDS",
+                "years": "1999 - 2003"
+            },
+            {
+                "institution": "University of Southern California School of Dentistry",
+                "degree": "Pediatric Dentistry Residency",
+                "years": "2004 - 2006"
+            }
+        ],
+        "experience": [
+            {
+                "clinic": "Kids First Dental Care",
+                "years": "2007 - Present",
+                "duration": "17 years"
+            },
+            {
+                "clinic": "ChildSmile Pediatric Dentistry",
+                "years": "2006 - 2007",
+                "duration": "1 year"
+            }
+        ],
+        "awards": [
+            {
+                "year": "December 2020",
+                "title": "Best Pediatric Dentist Award",
+                "description": "Recognized for outstanding work in pediatric dentistry."
+            },
+            {
+                "year": "July 2017",
+                "title": "Excellence in Children's Dentistry",
+                "description": "Awarded for exceptional care in pediatric dentistry."
+            }
+        ],
+        "specializations": [
+            "Pediatric Dentistry",
+            "Preventive Care",
+            "Dental Education"
+        ],
+        "services": [
+            "Fluoride Treatments",
+            "Dental Sealants",
+            "Cavity Prevention"
+        ]
+    }
+]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
