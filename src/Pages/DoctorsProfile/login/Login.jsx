@@ -1,6 +1,24 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../providers/AuthProvider';
+import doctor from '../../../assets/womanPluss.png'
 const Login = () => {
+
+    const { SignInUSer } = useContext(AuthContext);
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        console.log(email, password);
+        SignInUSer(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+            })
+            .catch()
+    }
     return (
         <div className="flex min-h-screen">
             {/* Left Side */}
@@ -15,26 +33,10 @@ const Login = () => {
             {/* Right Side */}
             <div className="flex-1 flex items-center justify-center bg-white p-10">
                 <div className="w-full max-w-md bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
-                    <h2 className="text-2xl font-bold text-black mb-6 text-center">Sign Up to Doc House</h2>
-                    <form onSubmit={handleSignup} className="space-y-4">
-                        <div className='text-black'>
-                            <label className="block text-black mb-1 text-left">Name</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your name"
-                                name='name'
-                                className="w-full px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:border-teal-500"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-black mb-1 text-left">Username</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your username"
-                                name='username'
-                                className="w-full px-4 py-2 border border-gray-300 text-black rounded-md focus:outline-none focus:border-teal-500"
-                            />
-                        </div>
+                    <h2 className="text-2xl font-bold text-black mb-6 text-center">Sign In to Doc House</h2>
+                    <form onSubmit={handleLogin} className="space-y-4">
+                        
+                      
                         <div>
                             <label className="block text-black mb-1 text-left">Email</label>
                             <input
@@ -57,11 +59,11 @@ const Login = () => {
                             type="submit"
                             className="w-full py-2 bg-orange-400 text-white text-black rounded-md hover:bg-orange-500 transition duration-300"
                         >
-                            Create Account
+                            Log In 
                         </button>
                     </form>
                     <p className="text-center mt-4 text-black">
-                        Already registered? Go to <a href="/signin" className="text-orange-400">SIGN IN</a>
+                        Dont have any account? Go to <a href="/signup" className="text-orange-400">SIGN UP</a>
                     </p>
                 </div>
             </div>
