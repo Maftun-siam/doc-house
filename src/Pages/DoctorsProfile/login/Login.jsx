@@ -1,29 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
-import doctor from "../../../assets/womanPluss.png"
-import plus from "../../../assets/plusplus.png"
-import { AuthContext } from '../../../providers/AuthProvider';
+import React from 'react';
 
-const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
-
-    const handleSignup = e => {
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        const username = form.username.value;
-        const name = form.name.value;
-        console.log(name, username, email, password);
-        createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-
-            })
-            .catch()
-
-    }
+const Login = () => {
     return (
         <div className="flex min-h-screen">
             {/* Left Side */}
@@ -92,4 +69,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default Login;

@@ -6,8 +6,8 @@ import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const Main = () => {
     const location = useLocation();
-    const noFooter = location.pathname.includes('signup')
-    const noHeader = location.pathname.includes('signup')
+    const noFooter = location.pathname.includes('signup','login')
+    const noHeader = location.pathname.includes('signup','login')
     return (
         <div className='bg-[#07332F]  max-w-screen-2xl mx-auto'>
            { noHeader || <Navbar></Navbar>}
