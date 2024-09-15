@@ -39,12 +39,16 @@ async function run() {
         app.post('/users', async (req, res) => {
             try {
                 const user = req.body;
+                console.log("Received user data:", user); // Log the user data to see what is being sent
                 const result = await userCollection.insertOne(user);
+                console.log("Insertion result:", result); // Log the result of the insertion
                 res.status(201).send(result);
             } catch (error) {
+                console.error("Error inserting user:", error); // Log the error
                 res.status(500).send({ message: "Error inserting user", error });
             }
         });
+        
 
     } catch (error) {
         console.error("Failed to connect to MongoDB", error);
