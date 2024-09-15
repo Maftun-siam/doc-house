@@ -20,13 +20,21 @@ const AuthProvider = ({ children }) => {
     }, [])
 
     /* Creating new user  */
-    const createUser = (email, password) => {
+    const createUser = async (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
+        const result = await createUserWithEmailAndPassword(auth, email, password)
+        const user = result.user
+
+        // Send verification email
+        await sendEmailVerification(user);
+        console.log("Verification email sent!");
+        return result;
     }
+    
     /* Sign in  user  */
     const SignInUSer = (email, password) => {
         setLoading(true);
+
         return signInWithEmailAndPassword(auth, email, password)
     }
 

@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
 import doctor from '../../../assets/womanPluss.png'
+import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
 
     const { SignInUSer } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const handleLogin = e => {
         e.preventDefault();
         const form = e.target;
@@ -15,6 +19,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
 
             })
             .catch()
@@ -35,8 +40,8 @@ const Login = () => {
                 <div className="w-full max-w-md bg-white p-8 border border-gray-200 rounded-lg shadow-sm">
                     <h2 className="text-2xl font-bold text-black mb-6 text-center">Sign In to Doc House</h2>
                     <form onSubmit={handleLogin} className="space-y-4">
-                        
-                      
+
+
                         <div>
                             <label className="block text-black mb-1 text-left">Email</label>
                             <input
@@ -59,7 +64,7 @@ const Login = () => {
                             type="submit"
                             className="w-full py-2 bg-orange-400 text-white text-black rounded-md hover:bg-orange-500 transition duration-300"
                         >
-                            Log In 
+                            Log In
                         </button>
                     </form>
                     <p className="text-center mt-4 text-black">
