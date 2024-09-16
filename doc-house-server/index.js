@@ -34,6 +34,7 @@ async function run() {
 
         // Collections
         const userCollection = client.db("docHouseDb").collection("users");
+        const servicesCollection = client.db("docHouseDb").collection("services");
 
         // Users collection - Add a new user
         app.post('/users', async (req, res) => {
@@ -48,12 +49,31 @@ async function run() {
                 res.status(500).send({ message: "Error inserting user", error });
             }
         });
-        
+
+
+
+
 
     } catch (error) {
         console.error("Failed to connect to MongoDB", error);
     }
+    // Services collection - Get all services
+    app.get('/services', async (req, res) => {
+        try {
+            const services = await servicesCollection.find().toArray();
+            res.status(200).send(services);
+        } catch (error) {
+            console.error("Error retrieving services:", error); // Log the error
+            res.status(500).send({ message: "Error retrieving services", error });
+        }
+    });
+
 }
+
+
+
+
+
 
 run().catch(console.dir);
 

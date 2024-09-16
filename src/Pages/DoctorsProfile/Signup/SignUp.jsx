@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import doctor from "../../../assets/womanPluss.png";
 import plus from "../../../assets/plusplus.png";
 import { AuthContext } from '../../../providers/AuthProvider';
-import axios from 'axios'; // Make sure you import axios if you haven't
+import axiosSecure from '../../../Components/hooks/useAxiosSecure'; // Make sure you import axios if you haven't
 
 const SignUp = () => {
     const { createUser } = useContext(AuthContext);
@@ -15,31 +15,28 @@ const SignUp = () => {
         const password = form.password.value;
         const username = form.username.value;
         const name = form.name.value;
-
+    
         try {
             // Create user in Firebase
             const result = await createUser(email, password);
             const user = result.user;
             console.log(user);
-
+    
             // Check if email is verified
-            if (!user.emailVerified) {
-                await user.sendEmailVerification();
-                console.log("Verification email sent!");
-            }
-
+          
+    
             // Send user data to MongoDB via axiosSecure
             const newUser = { name, username, email };
-            const response = await axios.post('/users', newUser);
+            const response = await axiosSecure.post('/users', newUser);
             if (response.data.insertedId) {
                 console.log('User added to MongoDB:', response.data);
             }
-
+    
         } catch (error) {
             console.error("Error during sign-up:", error);
-            // Optionally, display a message to the user or set an error state
         }
     };
+    
     return (
         <div className="flex min-h-screen">
             {/* Left Side */}

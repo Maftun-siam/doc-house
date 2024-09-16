@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendEmailVerification } from 'firebase/auth'; // Added sendEmailVerification import
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, sendEmailVerification } from 'firebase/auth'; 
 import app from '../firebase/firebaseConfig';
 
 export const AuthContext = createContext(null);
@@ -32,9 +32,9 @@ const AuthProvider = ({ children }) => {
             return result;
         } catch (error) {
             console.error("Error creating user:", error);
-            throw error; // Rethrow the error to be handled by the caller
+            throw error; 
         } finally {
-            setLoading(false); // Ensure loading is set to false even if there's an error
+            setLoading(false);
         }
     }
 
@@ -44,10 +44,10 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
             .catch(error => {
                 console.error("Error signing in:", error);
-                throw error; // Rethrow the error to be handled by the caller
+                throw error;
             })
             .finally(() => {
-                setLoading(false); // Ensure loading is set to false after sign-in attempt
+                setLoading(false);
             });
     }
 
@@ -57,10 +57,10 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
             .catch(error => {
                 console.error("Error signing out:", error);
-                throw error; // Rethrow the error to be handled by the caller
+                throw error;
             })
             .finally(() => {
-                setLoading(false); // Ensure loading is set to false after logout attempt
+                setLoading(false);
             });
     }
 
