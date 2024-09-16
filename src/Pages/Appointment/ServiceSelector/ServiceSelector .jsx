@@ -1,11 +1,11 @@
 // ServiceSelector.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import axiosPublic from '../../../Components/hooks/useAxiosPublic';
 
 const ServiceSelector = ({ setSelectedService }) => {
-  const [services, setServices] = useState([]);
+const [services, setServices] = useState([]);
 
+// Getting the services from mongodb database
   useEffect(() => {
     const fetchServices = async () => {
       try {
