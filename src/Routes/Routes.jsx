@@ -6,6 +6,7 @@ import SignUp from "../Pages/DoctorsProfile/Signup/SignUp";
 import Login from "../Pages/DoctorsProfile/login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Secret from "../Pages/Shared/Secret/Secret";
+import Appointment from "../Pages/Appointment/Appointment";
 
 
 
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: '/secret',
                 element: <PrivateRoute><Secret></Secret></PrivateRoute>
+            },
+            {
+                path: '/appointment',
+                element: <Appointment></Appointment>
             },
         ]
     },

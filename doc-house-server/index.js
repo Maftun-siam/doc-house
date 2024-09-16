@@ -5,13 +5,9 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send("Doc House Is On The Way");
-});
 
 // MongoDB connection URI
 const uri = "mongodb+srv://doc-house:Siam339880@cluster0.swrxkqt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -25,57 +21,55 @@ const client = new MongoClient(uri, {
     }
 });
 
-// Connect to MongoDB and keep the connection alive
-async function run() {
+let userCollection;
+let servicesCollection;
+
+// Connect to MongoDB and initialize collections
+async function connectToMongoDB() {
     try {
-        // Connect the client to the server
         await client.connect();
-        console.log("Successfully connected to MongoDB!");
-
-        // Collections
-        const userCollection = client.db("docHouseDb").collection("users");
-        const servicesCollection = client.db("docHouseDb").collection("services");
-
-        // Users collection - Add a new user
-        app.post('/users', async (req, res) => {
-            try {
-                const user = req.body;
-                console.log("Received user data:", user); // Log the user data to see what is being sent
-                const result = await userCollection.insertOne(user);
-                console.log("Insertion result:", result); // Log the result of the insertion
-                res.status(201).send(result);
-            } catch (error) {
-                console.error("Error inserting user:", error); // Log the error
-                res.status(500).send({ message: "Error inserting user", error });
-            }
-        });
-
-
-
-
-
+        console.log('Connected to MongoDB');
+        const db = client.db('docHouseDb'); // Replace with your actual database name
+        userCollection = db.collection('users');
+        servicesCollection = db.collection('services');
     } catch (error) {
-        console.error("Failed to connect to MongoDB", error);
+        console.error('Failed to connect to MongoDB', error);
     }
-    // Services collection - Get all services
-    app.get('/services', async (req, res) => {
-        try {
-            const services = await servicesCollection.find().toArray();
-            res.status(200).send(services);
-        } catch (error) {
-            console.error("Error retrieving services:", error); // Log the error
-            res.status(500).send({ message: "Error retrieving services", error });
-        }
-    });
-
 }
 
+// Call the function to connect to MongoDB
+connectToMongoDB();
 
+// Ensure `servicesCollection` is available before handling routes
+app.get('/services', async (req, res) => {
+    try {
+        if (!servicesCollection) {
+            return res.status(500).send({ message: 'Database not initialized' });
+        }
+        const services = await servicesCollection.find().toArray();
+        res.status(200).send(services);
+    } catch (error) {
+        console.error('Error retrieving services:', error);
+        res.status(500).send({ message: 'Failed to retrieve services' });
+    }
+});
 
-
-
-
-run().catch(console.dir);
+// Users collection - Add a new user
+app.post('/users', async (req, res) => {
+    try {
+        if (!userCollection) {
+            return res.status(500).send({ message: 'Database not initialized' });
+        }
+        const user = req.body;
+        console.log("Received user data:", user);
+        const result = await userCollection.insertOne(user);
+        console.log("Insertion result:", result);
+        res.status(201).send(result);
+    } catch (error) {
+        console.error("Error inserting user:", error);
+        res.status(500).send({ message: "Error inserting user", error });
+    }
+});
 
 // Start the server
 app.listen(port, () => {
