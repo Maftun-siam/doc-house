@@ -32,6 +32,7 @@ async function connectToMongoDB() {
         const db = client.db('docHouseDb'); // Replace with your actual database name
         userCollection = db.collection('users');
         servicesCollection = db.collection('services');
+        myAppointmentCollection = db.collection('myAppointment')
     } catch (error) {
         console.error('Failed to connect to MongoDB', error);
     }
@@ -70,6 +71,22 @@ app.post('/users', async (req, res) => {
         res.status(500).send({ message: "Error inserting user", error });
     }
 });
+// My Appointment Colllection  - Add New myappointment
+app.post('/myappointment', async (req, res) => {
+    try {
+        if (!myAppointmentCollection) {
+            return res.status(501).send({ message: 'Database not initializexd of myAppointmentCollection' })
+        }
+        const myAppointment = req.body;
+        console.log("Received myappointment data:", myAppointment);
+        const result = await myAppointmentCollection.insertOne(myAppointment);
+        console.log("Insertion result:", result);
+        res.status(201).send(result);
+    } catch (error) {
+        console.error("Error inserting user:", error);
+        res.status(500).send({ message: "Error inserting user", error });
+    }
+})
 
 // Start the server
 app.listen(port, () => {

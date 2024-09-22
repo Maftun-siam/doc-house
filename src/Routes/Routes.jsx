@@ -7,6 +7,7 @@ import Login from "../Pages/DoctorsProfile/login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Secret from "../Pages/Shared/Secret/Secret";
 import Appointment from "../Pages/Appointment/Appointment";
+import MyAppointment from "../Pages/Appointment/MyAppointment";
 
 
 
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             {
                 path: '/appointment',
                 element: <Appointment></Appointment>
+            },
+            {
+                path: '/myappointment',
+                element: <MyAppointment></MyAppointment>
             },
         ]
     },

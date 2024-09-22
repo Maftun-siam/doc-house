@@ -15,7 +15,7 @@ const slots = {
   ]
 };
 
-const SlotSelector = ({ selectedService }) => {
+const SlotSelector = ({ selectedService, handleSlotClick }) => {
   const availableSlots = slots[selectedService] || [];
 
   return (
@@ -28,7 +28,8 @@ const SlotSelector = ({ selectedService }) => {
           availableSlots.map((slot, index) => (
             <button
               key={index}
-              className="px-4 py-2 bg-green-500 text-white rounded"
+              className="nowSlot px-4 py-2 bg-green-500 text-white rounded"
+              onClick={() => handleSlotClick(slot)}
             >
               {slot}
             </button>

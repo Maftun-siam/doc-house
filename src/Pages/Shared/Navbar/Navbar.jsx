@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom'; // Import useLocation
 import logo from '../../../assets/logo.png';
 import { AuthContext } from '../../../providers/AuthProvider'; // Importing AuthContext to access authentication state
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext); // Destructuring user and logOut from AuthContext
+    const location = useLocation(); // Get the current route
 
     const handleLogout = () => {
         logOut()
@@ -17,7 +18,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className='flex z-20 max-w-screen-[1127px] mx-auto justify-between pt-8  items-center' style={{ maxWidth: '1127px' }}>
+        <div className='flex z-20 max-w-screen-[1127px] mx-auto justify-between pt-8 items-center' style={{ maxWidth: '1127px' }}>
             <div>
                 <Link to='/'>
                     <img src={logo} className='w-[233px] h-[61px]' alt="Logo" />
@@ -28,7 +29,17 @@ const Navbar = () => {
                     <NavLink to='/'> <li>Home</li></NavLink>
                     <NavLink to='/doc'> <li>Doc</li></NavLink>
                     <NavLink to='/about'> <li>About</li></NavLink>
-                    <NavLink to='/appointment'> <li>Appointment</li></NavLink>
+
+                    {/* Conditionally render "Appointment" or "My Appointment" based on the route and user login status */}
+                    {user && location.pathname === '/appointment' ? (
+                        <NavLink to='/myappointment'>
+                            <li>My Appointment</li> {/* Created "My Appointment" link */}
+                        </NavLink>
+                    ) : (
+                        <NavLink to='/appointment'>
+                            <li>Appointment</li> {/* Keep "Appointment" when not on the appointment page */}
+                        </NavLink>
+                    )}
 
                     {/* Conditionally render the "Secret" link only if the user is logged in */}
                     {user && (
