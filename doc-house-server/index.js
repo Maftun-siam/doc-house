@@ -88,6 +88,12 @@ app.post('/myappointment', async (req, res) => {
     }
 })
 
+// Getting all my appointments
+app.get('/myappointment', async (req, res) => {
+const result = await myAppointmentCollection.find().toArray();
+res.send(result);
+})
+
 // Start the server
 app.listen(port, () => {
     console.log(`Doc House Is On The Way At Port ${port}`);

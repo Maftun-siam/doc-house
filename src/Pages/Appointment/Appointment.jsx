@@ -27,22 +27,28 @@ const Appointment = () => {
     setEmail(formData.email);
 
     const appointmentData = {
-      name: user?.name || formData.name, // Use user's name if available, or form name
-      email: user?.email || formData.email, // Use user's email if available, or form email
+      name: formData.name, // Use user's name if available, or form name
+      email: formData.email, // Use user's email if available, or form email
       date: selectedDate,
       service: selectedService,
       slot: selectedSlot
     };
-
-    try {
-      const response = await axiosPublic.post('/myappointment', appointmentData);
-      console.log("Appointment booked successfully:", response.data);
-      alert('Appointment booked successfully!');
-      setIsPopupOpen(false); // Close the popup after submission
-    } catch (error) {
-      console.error("Error booking appointment:", error);
-      alert('Error booking appointment. Please try again.');
+    if (user && user.email) {
+      try {
+        const response = await axiosPublic.post('/myappointment', appointmentData);
+        console.log("Appointment booked successfully:", response.data);
+        alert('Appointment booked successfully!');
+        setIsPopupOpen(false); // Close the popup after submission
+      } catch (error) {
+        console.error("Error booking appointment:", error);
+        alert('Error booking appointment. Please try again.');
+      }
     }
+    else{
+      alert('Please Login or Singup First')
+      setIsPopupOpen(false); // Close the popup after submission
+    }
+
   };
 
   return (

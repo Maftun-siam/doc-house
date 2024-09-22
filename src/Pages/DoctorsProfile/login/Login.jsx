@@ -4,7 +4,7 @@ import doctor from '../../../assets/womanPluss.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
 
-    const { SignInUSer } = useContext(AuthContext);
+    const { SignInUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -15,7 +15,7 @@ const Login = () => {
         const password = form.password.value;
 
         console.log(email, password);
-        SignInUSer(email, password)
+        SignInUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);

@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom'; // Import useLocation
 import logo from '../../../assets/logo.png';
 import { AuthContext } from '../../../providers/AuthProvider'; // Importing AuthContext to access authentication state
+import useAppointment from '../../../Components/hooks/useAppointment';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext); // Destructuring user and logOut from AuthContext
     const location = useLocation(); // Get the current route
-
+    const [myappointment] = useAppointment()
     const handleLogout = () => {
         logOut()
             .then(() => {
@@ -33,7 +34,7 @@ const Navbar = () => {
                     {/* Conditionally render "Appointment" or "My Appointment" based on the route and user login status */}
                     {user && location.pathname === '/appointment' ? (
                         <NavLink to='/myappointment'>
-                            <li>My Appointment</li> {/* Created "My Appointment" link */}
+                            <li className='badge badge-secondary'>My Appointment{myappointment.length}</li> {/* Created "My Appointment" link */}
                         </NavLink>
                     ) : (
                         <NavLink to='/appointment'>
@@ -45,6 +46,7 @@ const Navbar = () => {
                     {user && (
                         <NavLink to='/secret'> <li>Secret</li></NavLink>
                     )}
+
 
                     {/* Conditional rendering for Login/Logout */}
                     {user ? (
